@@ -1,38 +1,50 @@
 package com.example.tpinmobiliariappdmgn.ui.inicio;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import com.example.tpinmobiliariappdmgn.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-import com.example.tpinmobiliariappdmgn.databinding.FragmentInicioBinding;
-import com.example.tpinmobiliariappdmgn.databinding.FragmentInicioBinding;
+public class InicioFragment extends Fragment implements OnMapReadyCallback {
 
-public class InicioFragment extends Fragment {
-
-    private FragmentInicioBinding binding;
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        InicioViewModel homeViewModel =
-                new ViewModelProvider(this).get(InicioViewModel.class);
-
-        binding = FragmentInicioBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
-    }
+    private GoogleMap mMap;
+    private InicioViewModel vm;
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_inicio, container, false);
+
+        vm = new ViewModelProvider(this).get(InicioViewModel.class);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
+                .findFragmentById(R.id.map);
+
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
+        return root;
+    }
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        mMap = googleMap;
+
+        vm.getUbicacionInicial().observe(getViewLifecycleOwner(), latLng -> {
+            if (mMap != null) {
+                mMap.clear();
+                mMap.addMarker(new MarkerOptions()
+                        .position(latLng)
+                        .title("Ubicación inicial"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14f));
+            }
+        });
     }
 }

@@ -4,16 +4,17 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class InicioViewModel extends ViewModel {
 
-    private final MutableLiveData<String> mText;
+    private final MutableLiveData<LatLng> ubicacionInicial = new MutableLiveData<>();
 
     public InicioViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        ubicacionInicial.setValue(new LatLng(-34.6037, -58.3816));
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<LatLng> getUbicacionInicial() {
+        return ubicacionInicial;
     }
 }
