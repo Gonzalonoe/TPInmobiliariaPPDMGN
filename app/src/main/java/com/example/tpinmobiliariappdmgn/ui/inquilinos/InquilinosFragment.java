@@ -11,18 +11,19 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.tpinmobiliariappdmgn.databinding.FragmentInmueblesBinding;
+import com.example.tpinmobiliariappdmgn.databinding.FragmentInquilinosBinding;
 import com.example.tpinmobiliariappdmgn.ui.inmuebles.InmueblesViewModel;
 
 public class InquilinosFragment extends Fragment {
 
-    private FragmentInmueblesBinding binding;
+    private FragmentInquilinosBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        InmueblesViewModel slideshowViewModel =
-                new ViewModelProvider(this).get(InmueblesViewModel.class);
+        InquilinosViewModel slideshowViewModel =
+                new ViewModelProvider(this).get(InquilinosViewModel.class);
 
-        binding = FragmentInmueblesBinding.inflate(inflater, container, false);
+        binding = FragmentInquilinosBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSlideshow;
