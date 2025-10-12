@@ -3,7 +3,10 @@ package com.example.tpinmobiliariappdmgn;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
+import com.example.tpinmobiliariappdmgn.models.Propietario;
+import com.example.tpinmobiliariappdmgn.request.ApiClient;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -47,18 +50,30 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+        View headerView = navigationView.getHeaderView(0);
+        TextView tvNombreUsuario = headerView.findViewById(R.id.tvNombreUsuario);
+        TextView tvEmailUsuario = headerView.findViewById(R.id.tvEmailUsuario);
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+        Propietario propietario = ApiClient.leerPropietario(getApplicationContext());
+
+        if (propietario != null) {
+            tvNombreUsuario.setText(propietario.getNombre() + " " + propietario.getApellido());
+            tvEmailUsuario.setText(propietario.getEmail());
+        } else {
+            tvNombreUsuario.setText("Invitado");
+            tvEmailUsuario.setText("usuario@correo.com");
+        }
     }
-}
+        @Override
+        public boolean onCreateOptionsMenu (Menu menu){
+            getMenuInflater().inflate(R.menu.main, menu);
+            return true;
+        }
+        @Override
+        public boolean onSupportNavigateUp () {
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+            return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                    || super.onSupportNavigateUp();
+        }
+    }

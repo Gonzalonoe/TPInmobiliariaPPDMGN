@@ -11,7 +11,7 @@ public class InicioViewModel extends ViewModel {
     private final MutableLiveData<LatLng> ubicacionInicial = new MutableLiveData<>();
 
     public InicioViewModel() {
-        ubicacionInicial.setValue(new LatLng(-34.6037, -58.3816));
+        ubicacionInicial.setValue(new LatLng(-32.346615913819285, -65.00322983307319));
     }
 
     public LiveData<LatLng> getUbicacionInicial() {

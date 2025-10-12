@@ -57,5 +57,26 @@ public class ApiClient {
         return sp.getString("token", null);
     }
 
+    public static void guardarPropietario(Context context, Propietario propietario) {
+        SharedPreferences sp = context.getSharedPreferences("propietario.xml", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        Gson gson = new Gson();
+        String propietarioJson = gson.toJson(propietario);
+        editor.putString("propietario", propietarioJson);
+        editor.apply();
+    }
+
+    public static Propietario leerPropietario(Context context) {
+        SharedPreferences sp = context.getSharedPreferences("propietario.xml", Context.MODE_PRIVATE);
+        String propietarioJson = sp.getString("propietario", null);
+
+        if (propietarioJson != null) {
+            Gson gson = new Gson();
+            return gson.fromJson(propietarioJson, Propietario.class);
+        } else {
+            return null;
+        }
+    }
+
 
 }

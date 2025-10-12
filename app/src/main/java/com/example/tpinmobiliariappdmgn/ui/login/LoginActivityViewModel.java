@@ -39,29 +39,52 @@ public class LoginActivityViewModel extends AndroidViewModel {
             mMensaje.setValue("Error, campos vacíos");
             return;
         }
-        ApiClient.InmoServicio inmoServicio = ApiClient.getInmoServicio();
-        Call<String> call = inmoServicio.loginForm(usuario, contrasenia);
+
+        ApiClient.InmoServicio api = ApiClient.getInmoServicio();
+        Call<String> call = api.loginForm(usuario, contrasenia);
+
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
                     String token = response.body();
                     ApiClient.guardarToken(getApplication(), token);
-                    Log.d("token", token);
-                    Intent intent = new Intent(getApplication(), MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    getApplication().startActivity(intent);
+                    ApiClient.InmoServicio api2 = ApiClient.getInmoServicio();
+                    Call<com.example.tpinmobiliariappdmgn.models.Propietario> perfilCall =
+                            api2.obtenerPerfil("Bearer " + token);
+
+                    perfilCall.enqueue(new Callback<com.example.tpinmobiliariappdmgn.models.Propietario>() {
+                        @Override
+                        public void onResponse(Call<com.example.tpinmobiliariappdmgn.models.Propietario> call,
+                                               Response<com.example.tpinmobiliariappdmgn.models.Propietario> response) {
+                            if (response.isSuccessful()) {
+                                com.example.tpinmobiliariappdmgn.models.Propietario propietario = response.body();
+                                ApiClient.guardarPropietario(getApplication(), propietario);
+
+                                Intent intent = new Intent(getApplication(), MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                getApplication().startActivity(intent);
+                            } else {
+                                mMensaje.postValue("Error al obtener el perfil");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<com.example.tpinmobiliariappdmgn.models.Propietario> call, Throwable t) {
+                            mMensaje.postValue("Error de conexión al obtener perfil");
+                            Log.e("Perfil", "Error: " + t.getMessage());
+                        }
+                    });
+
                 } else {
-                    Log.d("token", response.message());
-                    Log.d("token", response.code() + "");
-                    Log.d("token", response.errorBody() + "");
+                    mMensaje.postValue("Usuario o contraseña incorrectos");
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
-                Log.d("token", throwable.getMessage());
-
+                mMensaje.postValue("Error de conexión con el servidor");
+                Log.e("Login", throwable.getMessage());
             }
         });
     }

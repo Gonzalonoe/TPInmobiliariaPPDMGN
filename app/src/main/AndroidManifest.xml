@@ -17,10 +17,11 @@
             android:value="AIzaSyD9v1HDJNX21zN5XL2NEAxVVsV-_hORm_0"/>
         <activity
             android:name=".ui.login.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="Inmobiliaria"
+            android:theme="@style/Theme.TPInmobiliariaPPDMGN">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
