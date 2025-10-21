@@ -10,9 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.tpinmobiliariappdmgn.databinding.FragmentInmueblesBinding;
 import com.example.tpinmobiliariappdmgn.databinding.FragmentInquilinosBinding;
-import com.example.tpinmobiliariappdmgn.ui.inmuebles.InmueblesViewModel;
 
 public class InquilinosFragment extends Fragment {
 
