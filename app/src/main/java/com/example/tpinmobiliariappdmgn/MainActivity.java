@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        binding.appBarMain.fab.setOnClickListener(v -> {
+            navController.navigate(R.id.crearFragment);
+        });
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 

@@ -53,4 +53,9 @@
             android:id="@+id/action_detalleInmuebleFragment_to_nav_inmuebles"
             app:destination="@id/nav_inmuebles" />
     </fragment>
+    <fragment
+        android:id="@+id/crearFragment"
+        android:name="com.example.tpinmobiliariappdmgn.ui.inmuebles.CrearFragment"
+        android:label="fragment_crear"
+        tools:layout="@layout/fragment_crear" />
 </navigation>
