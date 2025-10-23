@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.inmuebles.DetalleInmueble"
-    tools:ignore="ExtraText">
 
     >
 
@@ -35,11 +33,11 @@
 
     <EditText
         android:id="@+id/etCodigo"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="104dp"
+        android:layout_height="52dp"
         android:layout_marginTop="8dp"
         android:enabled="false"
-        android:text="503"
+        android:text="0"
         android:textColor="#9C27B0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.091"
@@ -59,15 +57,14 @@
 
     <EditText
         android:id="@+id/etAmbientes"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="104dp"
+        android:layout_height="52dp"
         android:layout_marginTop="8dp"
         android:enabled="false"
-        android:minHeight="48dp"
-        android:text="3"
+        android:text="0"
         android:textColor="#9C27B0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAmbientes" />
 
@@ -85,10 +82,10 @@
     <EditText
         android:id="@+id/etDireccion"
         android:layout_width="169dp"
-        android:layout_height="48dp"
+        android:layout_height="52dp"
         android:layout_marginTop="8dp"
         android:enabled="false"
-        android:text="Salta 325"
+        android:text="0"
         android:textColor="#9C27B0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
@@ -108,12 +105,11 @@
 
     <EditText
         android:id="@+id/etPrecio"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="169dp"
+        android:layout_height="52dp"
         android:layout_marginTop="8dp"
         android:enabled="false"
-        android:minHeight="48dp"
-        android:text="$17000.0"
+        android:text="0"
         android:textColor="#9C27B0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -133,11 +129,11 @@
 
     <EditText
         android:id="@+id/etUso"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="104dp"
+        android:layout_height="52dp"
         android:layout_marginTop="8dp"
         android:enabled="false"
-        android:text="particular"
+        android:text="0"
         android:textColor="#9C27B0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.091"
@@ -149,7 +145,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="152dp"
-        android:checked="true"
         android:text="Disponible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.782"
@@ -169,11 +164,11 @@
 
     <EditText
         android:id="@+id/etTipo"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="104dp"
+        android:layout_height="52dp"
         android:layout_marginTop="16dp"
         android:enabled="false"
-        android:text="casa"
+        android:text="0"
         android:textColor="#9C27B0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.103"
@@ -185,20 +180,19 @@
         android:layout_width="296dp"
         android:layout_height="147dp"
         android:layout_marginTop="20dp"
-        android:contentDescription="Imagen del inmueble"
         android:scaleType="centerCrop"
-        android:src="@drawable/listarinmuebles"
+        android:src="@drawable/inmuebles"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etTipo" />
 
     <Button
-        android:id="@+id/btInmueble"
+        android:id="@+id/btEditar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="ver mas"
+        android:text="Guardar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

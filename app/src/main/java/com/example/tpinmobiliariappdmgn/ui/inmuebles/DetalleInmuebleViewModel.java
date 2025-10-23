@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+
 
 import com.example.tpinmobiliariappdmgn.models.Inmueble;
 import com.example.tpinmobiliariappdmgn.request.ApiClient;
@@ -29,11 +29,8 @@ public class DetalleInmuebleViewModel extends AndroidViewModel {
         }
         return mInmueble;
     }
-    public void setMInmueble(MutableLiveData<Inmueble> mInmueble){
-        this.mInmueble = mInmueble;
-    }
     public void recuperarInmueble(Bundle bundle){
-        Inmueble inmueble = (Inmueble) bundle.get("inmueble");
+        Inmueble inmueble = (Inmueble) bundle.get("inmuebleBundle");
         if (inmueble!= null){
             mInmueble.setValue(inmueble);
         }
@@ -41,15 +38,15 @@ public class DetalleInmuebleViewModel extends AndroidViewModel {
     public void actualizarInmueble(Inmueble inmueble){
         ApiClient.InmoServicio api = ApiClient.getInmoServicio();
         String token = ApiClient.leerToken(getApplication());
-        Call<Inmueble> call = api.actualizarInmueble(token, inmueble);
-
+        inmueble.setIdInmueble(mInmueble.getValue().getIdInmueble());
+        Call<Inmueble> call = api.actualizarInmueble("Bearer "+token, inmueble);
         call.enqueue(new Callback<Inmueble>() {
             @Override
             public void onResponse(Call<Inmueble> call, Response<Inmueble> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getApplication(), "Inmueble actualizado correctamente" + response.code(), Toast.LENGTH_LONG).show();
                 }else{
-                    Log.d("InmuebleVM", "error en la respuesta: "+ response.code());
+                    Log.d("InmuebleVM", "error en la respuesta: " + response.code());
                     Toast.makeText(getApplication(), "No se pudo actulizar el inmueble" + response.code(), Toast.LENGTH_LONG).show();
                 }
             }

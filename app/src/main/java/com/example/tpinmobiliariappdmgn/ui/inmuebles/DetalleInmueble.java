@@ -1,21 +1,22 @@
 package com.example.tpinmobiliariappdmgn.ui.inmuebles;
 
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.example.tpinmobiliariappdmgn.R;
 import com.example.tpinmobiliariappdmgn.databinding.FragmentDetalleInmuebleBinding;
 import com.example.tpinmobiliariappdmgn.models.Inmueble;
-
+import com.example.tpinmobiliariappdmgn.request.ApiClient;
 
 public class DetalleInmueble extends Fragment {
 
@@ -44,26 +45,25 @@ public class DetalleInmueble extends Fragment {
                 binding.etTipo.setText(inmueble.getTipo());
                 binding.cbDisponible.setChecked(inmueble.isDisponible());
                 Glide.with(getContext())
-                        .load("https://inmobiliariaulp-amb5hwfqaraweyga.canadacentral-01.azurewebsites.net" + inmueble.getImagen())
+                        .load(ApiClient.BASE_URL
+                                + inmueble.getImagen())
                         .placeholder(null)
                         .error("null")
                         .into(binding.ivFoto);
             }
         });
 
-
-
-        binding.btInmueble.setOnClickListener(new View.OnClickListener() {
+        binding.btEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 inmueble.setDisponible(binding.cbDisponible.isChecked());
                 mv.actualizarInmueble(inmueble);
             }
         });
 
-
         mv.recuperarInmueble(getArguments());
-        return inflater.inflate(R.layout.fragment_detalle_inmueble, container, false);
+        return view;
     }
 
     @Override

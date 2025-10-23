@@ -13,10 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.bumptech.glide.Glide;
 import com.example.tpinmobiliariappdmgn.R;
 import com.example.tpinmobiliariappdmgn.models.Inmueble;
+import com.bumptech.glide.Glide;
+import com.example.tpinmobiliariappdmgn.request.ApiClient;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.viewHo
     @NonNull
     @Override
     public viewHolderInmueble onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = li.inflate(R.layout.iteminmueble, parent, false);
+        View itemView = li.inflate(R.layout.item_inmueble, parent, false);
         return new viewHolderInmueble(itemView);
     }
 
@@ -44,7 +44,7 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.viewHo
         holder.direccion.setText("Dirección: " + inmuebleActual.getDireccion());
         holder.precio.setText("Valor: " + inmuebleActual.getValor());
         Glide.with(context)
-                .load("https://inmobiliariaulp-amb5hwfqaraweyga.canadacentral-01.azurewebsites.net" + inmuebleActual.getImagen())
+                .load(ApiClient.BASE_URL + inmuebleActual.getImagen())
                 .placeholder(R.drawable.listarinmuebles)
                 .error("null")
                 .into(holder.imagen);
@@ -73,7 +73,7 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.viewHo
             super(itemView);
             direccion = itemView.findViewById(R.id.tvDireccion);
             precio = itemView.findViewById(R.id.tvValor);
-            imagen = itemView.findViewById(R.id.ivFoto);
+            imagen = itemView.findViewById(R.id.imgPortada);
         }
     }
 }
