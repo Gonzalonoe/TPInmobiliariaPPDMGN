@@ -1,19 +1,69 @@
 package com.example.tpinmobiliariappdmgn.ui.contratos;
 
+import android.app.Application;
+import android.util.Log;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ContratosViewModel extends ViewModel {
+import com.example.tpinmobiliariappdmgn.models.Contrato;
+import com.example.tpinmobiliariappdmgn.models.Inmueble;
+import com.example.tpinmobiliariappdmgn.request.ApiClient;
+import com.example.tpinmobiliariappdmgn.ui.inmuebles.InmuebleViewModel;
 
-    private final MutableLiveData<String> mText;
+import java.util.ArrayList;
+import java.util.List;
 
-    public ContratosViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("Contratos");
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class ContratosViewModel extends AndroidViewModel {
+    private MutableLiveData<List<Inmueble>> listaInmueblesContratos = new MutableLiveData<>();
+    private  List<Contrato> listaContratos;
+    List<Inmueble> inmueblesConContrato;
+    public ContratosViewModel(@NonNull Application application) {
+        super(application);
+        listaContratos = new ArrayList<>();
+        inmueblesConContrato = new ArrayList<>();
+    }
+    public LiveData <List<Inmueble>> getListaInmueblesContratos(){
+        return listaInmueblesContratos;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void obtenerListaInmueblesContratos(){
+        String token = ApiClient.leerToken(getApplication());
+        ApiClient.InmoServicio api = ApiClient.getInmoServicio();
+        Call <List<Contrato>> call = api.getContratos("Bearer "+ token);
+        call.enqueue(new Callback<List<Contrato>>() {
+
+            @Override
+            public void onResponse(Call<List<Contrato>> call, Response<List<Contrato>> response) {
+                if (response.isSuccessful()){
+                    listaContratos.addAll(response.body());
+                    for (Contrato c: listaContratos) {
+                        inmueblesConContrato.add(c.getInmueble());
+                    }
+                    listaInmueblesContratos.postValue(inmueblesConContrato);
+                    Toast.makeText(getApplication(),"Cantidad de inmuebles con contratos activos " + inmueblesConContrato.size(), Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(getApplication(),"no se obtuvieron Contratos",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Contrato>> call, Throwable throwable) {
+                Log.d("errorContrato",throwable.getMessage());
+
+                Toast.makeText(getApplication(),"Error al obtener Contrato",Toast.LENGTH_LONG).show();
+            }
+        });
     }
+
+
 }
+

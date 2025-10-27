@@ -4,32 +4,36 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import com.example.tpinmobiliariappdmgn.databinding.FragmentContratosBinding;
+import com.example.tpinmobiliariappdmgn.models.Contrato;
+import com.example.tpinmobiliariappdmgn.models.Inmueble;
+
+import java.util.List;
 
 public class ContratosFragment extends Fragment {
-
     private FragmentContratosBinding binding;
+    private ContratosViewModel vm;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        ContratosViewModel slideshowViewModel =
-                new ViewModelProvider(this).get(ContratosViewModel.class);
-
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        vm = new ViewModelProvider(this).get(ContratosViewModel.class);
         binding = FragmentContratosBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        vm.getListaInmueblesContratos().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
+            @Override
+            public void onChanged(List<Inmueble> inmueblesContratos) {
+                ContratoAdapter ca = new ContratoAdapter(getContext(), inmueblesContratos, getLayoutInflater());
+                GridLayoutManager glm = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
+                binding.listaContratos.setLayoutManager(glm);
+                binding.listaContratos.setAdapter(ca);
+            }
+        });
+        vm.obtenerListaInmueblesContratos();
         return root;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }

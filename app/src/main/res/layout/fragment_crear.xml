@@ -8,10 +8,10 @@
     tools:context=".ui.inmuebles.CrearFragment">
 
     <EditText
+
         android:id="@+id/etAmbientes"
         android:layout_width="0dp"
         android:layout_height="52dp"
-        android:background="@drawable/bg_edittext"
         android:hint="Ej: 3"
         android:inputType="number"
         android:padding="10dp"
@@ -23,32 +23,32 @@
 
     <TextView
         android:id="@+id/tvAmbientes"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_width="0dp"
         android:text="Ambientes"
         android:textColor="#555555"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText"/>
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tvSuperficie"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:layout_width="0dp"
         android:text="Superficie (m²)"
         android:textColor="#555555"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etAmbientes"
-        tools:ignore="HardcodedText"/>
+        tools:ignore="HardcodedText" />
 
     <EditText
+
         android:id="@+id/etSuperficie"
         android:layout_width="0dp"
         android:layout_height="52dp"
-        android:background="@drawable/bg_edittext"
         android:hint="Ej: 120.5"
         android:inputType="numberDecimal"
         android:padding="10dp"
@@ -59,21 +59,21 @@
 
     <TextView
         android:id="@+id/tvDireccion"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:layout_width="0dp"
         android:text="Dirección"
         android:textColor="#555555"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etSuperficie"
-        tools:ignore="HardcodedText"/>
+        tools:ignore="HardcodedText" />
 
     <EditText
+
         android:id="@+id/etDireccion"
         android:layout_width="0dp"
         android:layout_height="52dp"
-        android:background="@drawable/bg_edittext"
         android:hint="Ej: Calle 123, Ciudad"
         android:inputType="text"
         android:padding="10dp"
@@ -85,21 +85,21 @@
 
     <TextView
         android:id="@+id/tvUso"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_width="0dp"
         android:text="Uso"
         android:textColor="#555555"
         android:textSize="14sp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/etDireccion"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="HardcodedText"/>
+        app:layout_constraintTop_toBottomOf="@id/etDireccion"
+        tools:ignore="HardcodedText" />
 
     <EditText
+
         android:id="@+id/etUso"
         android:layout_width="0dp"
         android:layout_height="52dp"
-        android:background="@drawable/bg_edittext"
         android:hint="Ej: Vivienda / Comercial"
         android:inputType="text"
         android:padding="10dp"
@@ -110,21 +110,21 @@
 
     <TextView
         android:id="@+id/tvTipo"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_width="0dp"
         android:text="Tipo"
         android:textColor="#555555"
         android:textSize="14sp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/etUso"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="HardcodedText"/>
+        app:layout_constraintTop_toBottomOf="@id/etUso"
+        tools:ignore="HardcodedText" />
 
     <EditText
+
         android:id="@+id/etTipo"
         android:layout_width="0dp"
         android:layout_height="52dp"
-        android:background="@drawable/bg_edittext"
         android:hint="Ej: Casa, Departamento, Lote..."
         android:inputType="text"
         android:padding="10dp"
@@ -135,24 +135,24 @@
 
     <TextView
         android:id="@+id/tvLatitud"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
         android:text="Latitud"
         android:textColor="#555555"
         android:textSize="14sp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/etTipo"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etTipo"
         tools:ignore="HardcodedText" />
 
     <EditText
+
         android:id="@+id/etLatitud"
         android:layout_width="0dp"
         android:layout_height="52dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/bg_edittext"
-        android:hint="-34,1234"
+        android:hint="Ingresar Longitud/Latitud"
         android:inputType="numberDecimal"
         android:padding="10dp"
         app:layout_constraintEnd_toStartOf="@id/etLongitud"
@@ -161,23 +161,23 @@
 
     <TextView
         android:id="@+id/tvLongitud"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
         android:text="Longitud"
         android:textColor="#555555"
         android:textSize="14sp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/etTipo"
-        app:layout_constraintStart_toEndOf="@id/tvLatitud"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvLatitud"
+        app:layout_constraintTop_toBottomOf="@id/etTipo"
         tools:ignore="HardcodedText" />
 
     <EditText
+
         android:id="@+id/etLongitud"
         android:layout_width="0dp"
         android:layout_height="52dp"
         android:layout_marginTop="4dp"
-        android:background="@drawable/bg_edittext"
         android:hint="-58.1234"
         android:inputType="numberDecimal"
         android:padding="10dp"
@@ -188,22 +188,22 @@
 
     <TextView
         android:id="@+id/tvValor"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_width="0dp"
         android:text="Valor (AR$)"
         android:textColor="#555555"
         android:textSize="14sp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/etLatitud"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etLatitud"
         tools:ignore="HardcodedText" />
 
     <EditText
+
         android:id="@+id/etValor"
         android:layout_width="0dp"
         android:layout_height="52dp"
-        android:background="@drawable/bg_edittext"
         android:hint="Ej: 250000.00"
         android:inputType="numberDecimal"
         android:padding="10dp"
@@ -213,11 +213,11 @@
         tools:ignore="HardcodedText" />
 
     <Button
+
         android:id="@+id/btnCargarImg"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/bg_boton"
+        android:layout_marginTop="60dp"
+        android:layout_width="0dp"
         android:text="Seleccionar imagen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -226,11 +226,11 @@
         tools:ignore="HardcodedText" />
 
     <Button
+
         android:id="@+id/btnGuardar"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="@drawable/bg_boton"
+        android:layout_width="0dp"
         android:padding="12dp"
         android:text="Guardar Inmueble"
         android:textColor="#FFFFFF"
@@ -240,6 +240,15 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCargarImg"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="36dp"
+        android:layout_height="68dp"
+        android:src="@drawable/inmuebles"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etValor" />
 </androidx.constraintlayout.widget.ConstraintLayout>

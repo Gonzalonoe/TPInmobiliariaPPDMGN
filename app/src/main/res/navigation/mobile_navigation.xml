@@ -37,7 +37,11 @@
         android:id="@+id/nav_contratos"
         android:name="com.example.tpinmobiliariappdmgn.ui.contratos.ContratosFragment"
         android:label="@string/menu_contratos"
-        tools:layout="@layout/fragment_contratos" />
+        tools:layout="@layout/fragment_contratos" >
+        <action
+            android:id="@+id/action_nav_contratos_to_detalleContratoFragment"
+            app:destination="@id/detalleContratoFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_logout"
@@ -58,4 +62,13 @@
         android:name="com.example.tpinmobiliariappdmgn.ui.inmuebles.CrearFragment"
         android:label="fragment_crear"
         tools:layout="@layout/fragment_crear" />
+    <fragment
+        android:id="@+id/detalleContratoFragment"
+        android:name="com.example.tpinmobiliariappdmgn.ui.contratos.DetalleContratoFragment"
+        android:label="fragment_detalle_contrato"
+        tools:layout="@layout/fragment_detalle_contrato" >
+        <action
+            android:id="@+id/action_detalleContratoFragment_to_nav_contratos"
+            app:destination="@id/nav_contratos" />
+    </fragment>
 </navigation>
