@@ -26,10 +26,12 @@ public class ContratosViewModel extends AndroidViewModel {
     private MutableLiveData<List<Inmueble>> listaInmueblesContratos = new MutableLiveData<>();
     private  List<Contrato> listaContratos;
     List<Inmueble> inmueblesConContrato;
+    private Contrato contrato;
     public ContratosViewModel(@NonNull Application application) {
         super(application);
         listaContratos = new ArrayList<>();
         inmueblesConContrato = new ArrayList<>();
+        contrato = new Contrato();
     }
     public LiveData <List<Inmueble>> getListaInmueblesContratos(){
         return listaInmueblesContratos;
@@ -62,6 +64,30 @@ public class ContratosViewModel extends AndroidViewModel {
                 Toast.makeText(getApplication(),"Error al obtener Contrato",Toast.LENGTH_LONG).show();
             }
         });
+    }
+    public Contrato obtenerContratoPorInmueble(Inmueble inmueble){
+        String token= ApiClient.leerToken(getApplication());
+        ApiClient.InmoServicio api = ApiClient.getInmoServicio();
+        Call<Contrato> call = api.getContratoPorInmueble("Bearer " + token, inmueble.getIdInmueble());
+        call.enqueue(new Callback<Contrato>() {
+            @Override
+            public void onResponse(Call<Contrato> call, Response<Contrato> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    contrato = response.body();
+                    Log.d("API", "Contrato obtenido: " + contrato.toString());
+                } else {
+                    Log.e("API", "Error en la respuesta: " + response.code());
+                    contrato = null;
+                }
+
+            }
+            @Override
+            public void onFailure(Call<Contrato> call, Throwable t) {
+                Log.e("API", "Fallo en la conexión: " + t.getMessage());
+                contrato = null;
+            }
+        });
+        return contrato;
     }
 
 

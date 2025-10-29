@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Información del Contrato"
+        android:text="Información del contrato"
         android:textColor="#9C27B0"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -47,42 +47,42 @@
         app:layout_constraintTop_toBottomOf="@+id/tvCodigo" />
 
     <TextView
-        android:id="@+id/tvAmbientes"
+        android:id="@+id/tvFechaInicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Ambientes"
+        android:text="Fecha Inicio"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintHorizontal_bias="0.729"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
 
     <EditText
-        android:id="@+id/etAmbientes"
+        android:id="@+id/etFechaInicio"
         android:layout_width="104dp"
         android:layout_height="52dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:enabled="false"
         android:text="0"
         android:textColor="#9C27B0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.798"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAmbientes" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFechaInicio" />
 
     <TextView
-        android:id="@+id/tvDireccion"
+        android:id="@+id/tvMontoAlquiler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Dirección"
+        android:text="Monto Alquiler"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etCodigo" />
 
     <EditText
-        android:id="@+id/etDireccion"
+        android:id="@+id/etMontoAlquiler"
         android:layout_width="169dp"
         android:layout_height="52dp"
         android:layout_marginTop="8dp"
@@ -92,45 +92,45 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDireccion" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMontoAlquiler" />
 
     <TextView
-        android:id="@+id/tvPrecio"
+        android:id="@+id/tvFechaFin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Precio"
+        android:text="FechaFin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.66"
+        app:layout_constraintHorizontal_bias="0.69"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAmbientes" />
+        app:layout_constraintTop_toBottomOf="@+id/etFechaInicio" />
 
     <EditText
-        android:id="@+id/etPrecio"
+        android:id="@+id/etFechaFin"
         android:layout_width="169dp"
         android:layout_height="52dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:enabled="false"
         android:text="0"
         android:textColor="#9C27B0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPrecio" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFechaFin" />
 
     <TextView
-        android:id="@+id/tvUso"
+        android:id="@+id/tvInquiino"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Uso"
+        android:text="Inquilino"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDireccion" />
+        app:layout_constraintTop_toBottomOf="@+id/etMontoAlquiler" />
 
     <EditText
-        android:id="@+id/etUso"
+        android:id="@+id/etInquilino"
         android:layout_width="104dp"
         android:layout_height="52dp"
         android:layout_marginTop="8dp"
@@ -140,32 +140,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUso" />
-
-    <CheckBox
-        android:id="@+id/cbDisponible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
-        android:text="Disponible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.782"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPrecio" />
+        app:layout_constraintTop_toBottomOf="@+id/tvInquiino" />
 
     <TextView
-        android:id="@+id/tvTipo"
+        android:id="@+id/tvInmueble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Tipo"
+        android:text="Inmueble"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUso" />
+        app:layout_constraintTop_toBottomOf="@+id/etInquilino" />
 
     <EditText
-        android:id="@+id/etTipo"
+        android:id="@+id/etInmueble"
         android:layout_width="104dp"
         android:layout_height="52dp"
         android:layout_marginTop="16dp"
@@ -175,29 +164,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTipo" />
-
-    <ImageView
-        android:id="@+id/ivFoto"
-        android:layout_width="296dp"
-        android:layout_height="147dp"
-        android:layout_marginTop="20dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/inmuebles"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTipo" />
+        app:layout_constraintTop_toBottomOf="@+id/tvInmueble" />
 
     <Button
-        android:id="@+id/btEditar"
+        android:id="@+id/btPagos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Guardar"
+        android:layout_marginBottom="252dp"
+        android:text="Ver Pagos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivFoto"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintHorizontal_bias="0.859"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

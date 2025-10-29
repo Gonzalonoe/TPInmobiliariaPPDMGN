@@ -3,15 +3,13 @@ package com.example.tpinmobiliariappdmgn.ui.contratos;
 import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
 import com.example.tpinmobiliariappdmgn.models.Contrato;
+import com.example.tpinmobiliariappdmgn.models.Inmueble;
 import com.example.tpinmobiliariappdmgn.request.ApiClient;
 
 import retrofit2.Call;
@@ -19,20 +17,38 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DetalleContratoViewModel extends AndroidViewModel {
-    private MutableLiveData<Contrato> mContrato;
+    private Contrato contrato= new Contrato();
+    private MutableLiveData<Contrato> mContrato = new MutableLiveData<>();
     public DetalleContratoViewModel(@NonNull Application application) {
         super(application);
     }
     public LiveData<Contrato> getMContrato(){
-        if (mContrato == null){
-            mContrato = new MutableLiveData<>();
-        }
         return mContrato;
     }
     public void recuperarContrato(Bundle bundle){
-        Contrato contrato = (Contrato) bundle.get("contratoBundle");
-        if (contrato!= null){
-            mContrato.setValue(contrato);
-        }
+        Inmueble inmuebleContrato = (Inmueble) bundle.get("inmuebleBundle");
+        obtenerContratoPorInmueble(inmuebleContrato);
+    }
+    public void obtenerContratoPorInmueble(Inmueble inmueble){
+        String token= ApiClient.leerToken(getApplication());
+        ApiClient.InmoServicio api = ApiClient.getInmoServicio();
+        Call<Contrato> call = api.getContratoPorInmueble("Bearer " + token, inmueble.getIdInmueble());
+        Log.d("obtenerporinmu", "antes del enqueue");
+        call.enqueue(new Callback<Contrato>() {
+            @Override
+            public void onResponse(Call<Contrato> call, Response<Contrato> response) {
+                Log.d("obtenerporinmu", "entramos al ONRESPONSE");
+                if (response.isSuccessful() && response.body() != null) {
+                    mContrato.postValue(response.body());
+                } else {
+                    contrato = null;
+                }
+            }
+            @Override
+            public void onFailure(Call<Contrato> call, Throwable t) {
+                Log.e("API", "Fallo en la conexión: " + t.getMessage());
+                contrato = null;
+            }
+        });
     }
 }

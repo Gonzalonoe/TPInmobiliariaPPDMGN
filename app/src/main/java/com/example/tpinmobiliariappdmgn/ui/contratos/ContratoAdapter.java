@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tpinmobiliariappdmgn.R;
+import com.example.tpinmobiliariappdmgn.models.Contrato;
 import com.example.tpinmobiliariappdmgn.models.Inmueble;
 import com.bumptech.glide.Glide;
 import com.example.tpinmobiliariappdmgn.request.ApiClient;
@@ -51,7 +52,7 @@ public class ContratoAdapter extends RecyclerView.Adapter<com.example.tpinmobili
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("inmuebleContratoBundle", contratoActual);
+                bundle.putSerializable("inmuebleBundle", inmuebleActual);
                 Navigation.findNavController((Activity)context, R.id.nav_host_fragment_content_main).navigate(R.id.detalleContratoFragment, bundle);
 
             }
