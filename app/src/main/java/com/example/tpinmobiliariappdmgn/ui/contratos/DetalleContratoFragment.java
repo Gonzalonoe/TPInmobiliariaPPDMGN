@@ -8,7 +8,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,10 +50,12 @@ public class DetalleContratoFragment extends Fragment {
             }
         });
 
-        binding.btPagos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+        binding.btPagos.setOnClickListener(v -> {
+            Contrato contrato = mv.getMContrato().getValue();
+            if (contrato != null) {
+                mv.irApagos(Navigation.findNavController(v), contrato);
+            } else {
+                Log.e("DetalleContratoFragment", "Contrato es null, no se puede ir a pagos");
             }
         });
 

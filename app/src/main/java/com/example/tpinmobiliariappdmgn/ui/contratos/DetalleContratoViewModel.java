@@ -3,15 +3,16 @@ package com.example.tpinmobiliariappdmgn.ui.contratos;
 import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.navigation.NavController;
+
+import com.example.tpinmobiliariappdmgn.R;
 import com.example.tpinmobiliariappdmgn.models.Contrato;
 import com.example.tpinmobiliariappdmgn.models.Inmueble;
 import com.example.tpinmobiliariappdmgn.request.ApiClient;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,5 +51,10 @@ public class DetalleContratoViewModel extends AndroidViewModel {
                 contrato = null;
             }
         });
+    }
+    public void irApagos(NavController navController, Contrato contrato) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("contratoBundle", contrato);
+        navController.navigate(R.id.action_detalleContratoFragment_to_pagosFragment, bundle);
     }
 }

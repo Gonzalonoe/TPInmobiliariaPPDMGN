@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.example.tpinmobiliariappdmgn.models.Contrato;
 import com.example.tpinmobiliariappdmgn.models.Inmueble;
+import com.example.tpinmobiliariappdmgn.models.Pagos;
 import com.example.tpinmobiliariappdmgn.models.Propietario;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -40,6 +41,7 @@ public class ApiClient {
         return retrofit.create(InmoServicio.class);
     }
 
+
     public interface InmoServicio{
 
         @FormUrlEncoded
@@ -72,6 +74,11 @@ public class ApiClient {
                 @Path("id") int idInmueble
         );
 
+        @GET("/api/pagos/contrato/{id}")
+        Call<List<Pagos>> getPagosPorContratos(
+                @Header("Authorization") String token,
+                @Path("id") int idContrato
+        );
 
     }
 

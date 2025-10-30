@@ -1,8 +1,9 @@
 package com.example.tpinmobiliariappdmgn.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Contrato {
+public class Contrato implements Serializable {
 
     private int idContrato;
     private Date fechaInicio;

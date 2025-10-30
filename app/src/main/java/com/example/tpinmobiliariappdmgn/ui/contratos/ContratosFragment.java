@@ -9,9 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-
 import com.example.tpinmobiliariappdmgn.databinding.FragmentContratosBinding;
-import com.example.tpinmobiliariappdmgn.models.Contrato;
 import com.example.tpinmobiliariappdmgn.models.Inmueble;
 
 import java.util.List;
