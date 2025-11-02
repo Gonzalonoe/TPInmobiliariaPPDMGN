@@ -31,7 +31,11 @@
         android:id="@+id/nav_inquilinos"
         android:name="com.example.tpinmobiliariappdmgn.ui.inquilinos.InquilinosFragment"
         android:label="@string/menu_inquilinos"
-        tools:layout="@layout/fragment_inquilinos" />
+        tools:layout="@layout/fragment_inquilinos" >
+        <action
+            android:id="@+id/action_nav_inquilinos_to_detalleContratoFragment"
+            app:destination="@id/detalleContratoFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_contratos"
@@ -51,7 +55,7 @@
     <fragment
         android:id="@+id/detalleInmuebleFragment"
         android:name="com.example.tpinmobiliariappdmgn.ui.inmuebles.DetalleInmueble"
-        android:label="fragment_detalle_inmueble"
+        android:label="Detalles del Inmueble"
         tools:layout="@layout/fragment_detalle_inmueble" >
         <action
             android:id="@+id/action_detalleInmuebleFragment_to_nav_inmuebles"
@@ -60,12 +64,12 @@
     <fragment
         android:id="@+id/crearFragment"
         android:name="com.example.tpinmobiliariappdmgn.ui.inmuebles.CrearFragment"
-        android:label="fragment_crear"
+        android:label="Crear"
         tools:layout="@layout/fragment_crear" />
     <fragment
         android:id="@+id/detalleContratoFragment"
         android:name="com.example.tpinmobiliariappdmgn.ui.contratos.DetalleContratoFragment"
-        android:label="fragment_detalle_contrato"
+        android:label="Detalles del Contrato"
         tools:layout="@layout/fragment_detalle_contrato" >
         <action
             android:id="@+id/action_detalleContratoFragment_to_nav_contratos"
@@ -77,7 +81,7 @@
     <fragment
         android:id="@+id/pagosFragment"
         android:name="com.example.tpinmobiliariappdmgn.ui.contratos.PagosFragment"
-        android:label="fragment_pagos"
+        android:label="Pagos"
         tools:layout="@layout/fragment_pagos" />
 
 </navigation>

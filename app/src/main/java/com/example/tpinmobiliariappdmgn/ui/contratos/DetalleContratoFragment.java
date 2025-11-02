@@ -1,5 +1,7 @@
 package com.example.tpinmobiliariappdmgn.ui.contratos;
 
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -10,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,11 +55,27 @@ public class DetalleContratoFragment extends Fragment {
 
         binding.btPagos.setOnClickListener(v -> {
             Contrato contrato = mv.getMContrato().getValue();
-            if (contrato != null) {
                 mv.irApagos(Navigation.findNavController(v), contrato);
-            } else {
                 Log.e("DetalleContratoFragment", "Contrato es null, no se puede ir a pagos");
+
+        });
+        binding.btInquilinos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mv.irAinquilinos();
             }
+        });
+        mv.getIrAInquilino().observe(getViewLifecycleOwner(), bundle -> {
+            getViewLifecycleOwner().getLifecycle().addObserver(new DefaultLifecycleObserver() {
+                @Override
+                public void onResume(@NonNull LifecycleOwner owner) {
+                    if (bundle == null) return;
+                    NavController navController = NavHostFragment.findNavController(DetalleContratoFragment.this);
+                    navController.navigate(R.id.nav_inquilinos, bundle);
+                    mv.limpiarNavegacion();
+                    getViewLifecycleOwner().getLifecycle().removeObserver(this);
+                }
+            });
         });
 
         mv.recuperarContrato(getArguments());

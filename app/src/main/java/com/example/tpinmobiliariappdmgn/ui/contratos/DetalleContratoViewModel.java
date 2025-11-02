@@ -20,12 +20,15 @@ import retrofit2.Response;
 public class DetalleContratoViewModel extends AndroidViewModel {
     private Contrato contrato= new Contrato();
     private MutableLiveData<Contrato> mContrato = new MutableLiveData<>();
+    private MutableLiveData<Bundle> irAInquilino = new MutableLiveData<>();
     public DetalleContratoViewModel(@NonNull Application application) {
         super(application);
     }
     public LiveData<Contrato> getMContrato(){
         return mContrato;
     }
+    public LiveData<Bundle> getIrAInquilino() {
+        return irAInquilino;}
     public void recuperarContrato(Bundle bundle){
         Inmueble inmuebleContrato = (Inmueble) bundle.get("inmuebleBundle");
         obtenerContratoPorInmueble(inmuebleContrato);
@@ -56,5 +59,16 @@ public class DetalleContratoViewModel extends AndroidViewModel {
         Bundle bundle = new Bundle();
         bundle.putSerializable("contratoBundle", contrato);
         navController.navigate(R.id.action_detalleContratoFragment_to_pagosFragment, bundle);
+    }
+    public void irAinquilinos() {
+        Contrato contrato = mContrato.getValue();
+        if (contrato != null && contrato.getInquilino() != null) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("inquilino", contrato.getInquilino());
+            irAInquilino.setValue(bundle);
+        }
+    }
+    public void limpiarNavegacion() {
+        irAInquilino.setValue(null);
     }
 }
