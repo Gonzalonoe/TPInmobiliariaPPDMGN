@@ -78,7 +78,7 @@ public class CrearViewModel extends AndroidViewModel {
             inmueble.setLatitud(lat);
             inmueble.setLongitud(lon);
             inmueble.setDisponible(false);
-            //convierto imagen a bytes
+
             byte[] imagen = transformarImagen();
             if (imagen.length ==0){
                 Toast.makeText(getApplication(), "Debe elegir una imagen!!!", Toast.LENGTH_LONG).show();
